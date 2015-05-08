@@ -3,6 +3,9 @@ use strict;
 use warnings;
 use Math::Complex;
 
+# Intial Perl implementation
+# Included for posterity
+
 sub matvec {
 	my ($x, $a) = @_;
 	$x = shift;			# Vector to multiply by
@@ -29,11 +32,14 @@ sub matvec {
 	print "\n";
 }
 
+# Initialize matrix
 my @arr = (5, 0, 0, 0,
 		   0, 1, 0, 0,
 		   0, 0, 2, 0,
 		   0, 0, 0, 1);
 
+# Initialize vector
 my @vec = (1, 0, 0, 2);
 
+# Calculate result
 matvec(\@vec, \@arr);

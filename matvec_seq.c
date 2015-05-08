@@ -11,21 +11,51 @@ void print_array(unsigned int arr[], int n);
 
 int main(void) {
 
+	// Declare necessary variables
+	int n = 16;
 	unsigned int mat[1577536];
 	unsigned int vec[1256];
-	int n = 1256;
+	clock_t begin, end;
+	double time_spent;
 
-	// Fill random matrix
-	printf("Reticulating splines...");
-	for(int i = 0; i < n; i++) {
-		for(int j = 0; j < n; j++) {
-			mat[(i * n) + j] = rand() % 100;
+	// Run through the various trials
+	while (n < 2048) {
+
+		// Clear average runtime for current size
+		double trials = 0;
+
+		// Run ten trials
+		for(int k = 0; k < 10; k++) {
+			// Fill random matrix
+			//printf("Reticulating splines...");
+			for(int i = 0; i < n; i++) {
+				for(int j = 0; j < n; j++) {
+					mat[(i * n) + j] = rand() % 100;
+				}
+				vec[i] = rand() % 100;
+			}
+			//printf("done\n");
+
+			// Start the clock
+			begin = clock();
+
+			// Vector the matrix
+			mat_vec(mat, vec, n);
+
+			// TIME!
+			end = clock();
+			time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+			trials += time_spent;
 		}
-		vec[i] = rand() % 100;
-	}
-	printf("done\n");
 
-	mat_vec(mat, vec, n);
+		printf("%i - %f\n", n, trials / 10.0);
+
+		// Double n for next iteration
+		n *= 2;
+		if (n == 2048) {
+			n = 1256;
+		}
+	}
 
 	return 0;
 }
@@ -45,7 +75,7 @@ void mat_vec(unsigned int mat[], unsigned int vec[], int n) {
 		}
 	}
 
-	print_array(arr, n);
+	//print_array(arr, n);
 }
 
 // Print the array passed to the function
