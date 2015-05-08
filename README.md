@@ -1,4 +1,5 @@
-# cs365-final
-Parallel and Distributed Computing Final Project
+# Parallel and Distributed Computing Final Project
 
 lol README
+
+exactly what it says on the tin
